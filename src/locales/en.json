@@ -1,0 +1,88 @@
+{
+  "login": {
+    "userName": "User Name",
+    "password": "Password",
+    "login": "Login"
+  },
+  "lang": {
+    "ar": "عربى",
+    "en": "English"
+  },
+  "sidebar": {
+    "companyStructure": "Company Structure",
+    "dashboard": "Dashboard",
+    "Administrator": "Administrator",
+    "HrSpace":"HR Space",
+    "Reports":"Reports",
+    "location": "Location",
+    "cities": "Cities",
+    "areas": "Areas"
+  },
+  "navbar": {
+    "Profile": "Profile",
+    "selectLang": "Select Language",
+    "logout": "Logout"
+  },
+  "actions": {
+    "actions": "Actions",
+    "edit": "Edit",
+    "noData": "No Data",
+    "Add": "Add New",
+    "save": "Save Changs",
+    "add": "Add",
+    "moreDetails": "More Details",
+    "close": "Close",
+    "accept": "Accept",
+    "export": "Export EXCEL",
+    "delete": "Delete",
+    "search": "Search",
+    "DeleteConfirmation": "Delete Confirmation",
+    "areYouSureToDelete": "Are You Sure To Delete?",
+    "UpdateConfirmation": "Update Confirmation",
+    "areYouSureToUpdate": "Are You Sure To Update?"
+  },
+  "permission": {
+    "permissions": "Permissions",
+    "name": "Name"
+  },
+  "CompanyStructure":{
+    "Companies": "Companies",
+    "Departments": "Departments",
+    "JobTitles": "Job Titles",
+    "Emoloyees": "Employees" ,
+    "Categories": "Categories"
+  },
+  "companies": {
+    "code": "Code",
+    "companyName": "Company Name",
+    "companyLogo": "Company Logo",
+    "editCompany": "Edit Company",
+    "addCompany": "Add Company"
+  },
+  "departments": {
+    "department": "Department",
+    "Name": "Name",
+    "company": "Company",
+    "editCompany": "Edit Department",
+    "addCompany": "Add Department"
+  },
+  "jobTitles":{
+    "editJob": "Edit Job",
+    "addJob": "Add Job"
+  },
+  "city": {
+    "name": "Name",
+    "id": "#",
+    "edit": "Edit City",
+    "add": "Add City"
+  },
+  "area": {
+    "name": "Name",
+    "city": "City Name",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "radius": "Radius",
+    "edit": "Edit Area",
+    "add": "Add Area"
+  }
+}

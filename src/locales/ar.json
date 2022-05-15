@@ -1,0 +1,88 @@
+{
+  "login": {
+    "userName": "اسم االمستخدم",
+    "password": "كلمة المرور",
+    "login": "تسجيل الدخول"
+  },
+  "lang": {
+    "ar": "عربى",
+    "en": "English"
+  },
+  "sidebar": {
+    "companyStructure": "هيكل الشركة",
+    "dashboard": "لوحة القيادة",
+    "Administrator": "المسؤول",
+    "HrSpace":"الموارد البشرية",
+    "Reports":"التقارير",
+    "location": "الموقع",
+    "cities": "المدن",
+    "areas": "المناطق"
+  },
+  "navbar": {
+    "Profile": "الملف الشخصي",
+    "selectLang": "اختر لغة",
+    "logout": "تسجيل خروج"
+  },
+  "actions": {
+    "actions": "الإجراءات",
+    "edit": "تعديل",
+    "noData": "لا يوجد بيانات",
+    "Add": "أضافة جديد",
+    "save": "حفظ التغييرات",
+    "add": "اضافة",
+    "moreDetails": "المزيد من التفاصيل",
+    "close": "اغلاق",
+    "accept": "قبول",
+    "export": "تنزيل اكسل",
+    "delete": "حذف",
+    "search": "بحث",
+    "DeleteConfirmation": "تأكيد الحذف",
+    "areYouSureToDelete": "هل انت متأكد من الحذف؟",
+    "UpdateConfirmation": "تأكيد التحديث",
+    "areYouSureToUpdate": "هل انت متأكد من التحديث؟"
+  },
+  "permission": {
+    "permissions": "أذونات",
+    "name": "اسم"
+  },
+  "CompanyStructure":{
+    "Companies": "الشركات",
+    "Departments": "الإدارات",
+    "JobTitles": "المسميات الوظيفية",
+    "Emoloyees": "الموظفين" ,
+    "Categories": "الفئات"
+  },
+  "companies": {
+    "code": "الكود",
+    "companyName": "اسم الشركة",
+    "companyLogo": "شعار الشركة",
+    "editCompany": "تعديل الشركة",
+    "addCompany": "اضافة شركة"
+  },
+  "departments": {
+    "department": "الادارة",
+    "Name": "الاسم",
+    "company": "الشركة",
+    "editCompany": "تعديل الادارة",
+    "addCompany": "اضافة ادارة"
+  },
+  "jobTitles":{
+    "editJob": "تعديل الوظيفة",
+    "addJob": "اضافة وظيفة"
+  },
+  "city": {
+    "name": "الاسم",
+    "id": "#",
+    "edit": "تعديل المدينة",
+    "add": "اضافة مدينة"
+  },
+  "area": {
+    "name": "الاسم",
+    "city": "اسم المدينة",
+    "latitude": "خط العرض",
+    "longitude": "خط الطول",
+    "radius": "نصف القطر",
+    "edit": "تعديل المنطقة",
+    "add": "اضافة منطقة"
+  }
+}
