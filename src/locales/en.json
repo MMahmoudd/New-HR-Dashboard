@@ -12,11 +12,18 @@
     "companyStructure": "Company Structure",
     "dashboard": "Dashboard",
     "Administrator": "Administrator",
-    "HrSpace":"HR Space",
-    "Reports":"Reports",
+    "HrSpace": "HR Space",
+    "Reports": "Reports",
     "location": "Location",
     "cities": "Cities",
-    "areas": "Areas"
+    "areas": "Areas",
+    "TopManagement": "Top Management",
+    "ReportingTo": "Reporting To",
+    "Signin-out": "Signin-out",
+    "Execuses": "Execuses",
+    "roles": "Roles",
+    "Time": "Time",
+    "mission": "Mission"
   },
   "navbar": {
     "Profile": "Profile",
@@ -45,12 +52,13 @@
     "permissions": "Permissions",
     "name": "Name"
   },
-  "CompanyStructure":{
+  "CompanyStructure": {
     "Companies": "Companies",
     "Departments": "Departments",
     "JobTitles": "Job Titles",
-    "Emoloyees": "Employees" ,
-    "Categories": "Categories"
+    "Emoloyees": "Employees",
+    "Categories": "Categories",
+    "users": "Employee"
   },
   "companies": {
     "code": "Code",
@@ -66,7 +74,7 @@
     "editCompany": "Edit Department",
     "addCompany": "Add Department"
   },
-  "jobTitles":{
+  "jobTitles": {
     "editJob": "Edit Job",
     "addJob": "Add Job"
   },
@@ -84,5 +92,129 @@
     "radius": "Radius",
     "edit": "Edit Area",
     "add": "Add Area"
+  },
+  "TopManagement": {
+    "TopManagement": "Top Management",
+    "id": "id",
+    "Title": "Job Title"
+  },
+  "reportingTo": {
+    "reportingTo": "reporting To",
+    "id": "id",
+    "DirectManager": "Direct Manager",
+    "Employee": "Employee",
+    "Level": "Level"
+  },
+  "SignInOutLog": {
+    "from": "From",
+    "to": "To",
+    "Code": "Code",
+    "Department": "Department",
+    "EmployeeName": "Employee Name",
+    "JobTitle": "Job Title",
+    "Category": "Category",
+    "SignInOutLog": "Sign-In-Out-Log",
+    "Id": "Id",
+    "User": "User",
+    "SignInTime": "SignIn Time",
+    "SignOutTime": "SignOut Time",
+    "Day": "Day",
+    "Company": "Company",
+    "Area": "Area",
+    "City": "city"
+  },
+  "Mission": {
+    "from": "From",
+    "to": "To",
+    "Code": "Code",
+    "JobTitle": "Job Title",
+    "Company": "Company ",
+
+    "Department": "Department",
+    "EmployeeName": "Employee Name",
+    "Category": "Category",
+    "MissionReport": "Mission Report",
+    "Mission": "Mission",
+    "Search": "Search",
+    "MissionStartDate": "Mission Start Date",
+    "MissionEndDate": "Mission End Date",
+    "sender": "Sender",
+    "DirectManager": "Direct Manager",
+    "status": "Status",
+    "details": "Details"
+  },
+  "Execuses": {
+    "from": "From",
+    "to": "To",
+    "Code": "Code",
+    "JobTitle": "Job Title",
+    "Company": "Company ",
+    "Department": "Department",
+
+    "Execuses": "Excuses",
+    "ExcueStartTime": "Excuse Start Time",
+    "ExcueEndTime": "Excuse End Time",
+    "ExcueDay": "Excuse Day",
+    "sender": "sender",
+    "Search": "Search",
+    "DirectManager": "Direct Manager",
+    "status": "status"
+  },
+  "FAQ": {
+    "FAQ": "FAQ",
+    "id": "id",
+    "Question": "Question",
+    "Answer": "Answer"
+  },
+  "Policies": {
+    "Policies": "Company Policies",
+    "id": "id",
+    "Title": "Title",
+    "file": "files",
+    "company": "Company Name",
+    "AddPolicies": "Add Policies",
+    "EditPolicies": "Edit Policies"
+  },
+  "news": {
+    "news": "News",
+    "id": "id",
+    "title": "SUBJECT",
+    "description": "News",
+    "company_id": "company",
+    "categories": "categories",
+    "companyLogo": "companyLogo",
+    "created": "DATE",
+    "editnews": "Update News",
+    "addnews": "Send new News",
+    "uploadLogo": "upload Logo"
+  },
+  "time": {
+    "time": "Time",
+    "id": "id",
+    "from": "From",
+    "to": "To",
+    "days": "Days",
+    "areas": "areas",
+    "Categories": "Categories",
+    "AddTime": "Add Time"
+  },
+  "roles": {
+    "roles": "Roles",
+    "addroles": "Add Roles"
+  },
+  "Main": {
+    "MainReport": "Main Report",
+    "from": "From",
+    "to": "To",
+    "Code": "Code",
+    "EmployeeName": "Employee Name",
+    "JobTitle": "Job Title",
+    "Category": "Category",
+    "Company": "Company ",
+    "StartDate": "Start Date",
+    "managers": "managers",
+    "Areas": "Areas",
+    "Department": "Department",
+    "Search": "Search"
   }
 }

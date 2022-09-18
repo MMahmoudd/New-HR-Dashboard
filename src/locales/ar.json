@@ -12,11 +12,17 @@
     "companyStructure": "هيكل الشركة",
     "dashboard": "لوحة القيادة",
     "Administrator": "المسؤول",
-    "HrSpace":"الموارد البشرية",
-    "Reports":"التقارير",
+    "HrSpace": "الموارد البشرية",
+    "Reports": "التقارير",
     "location": "الموقع",
     "cities": "المدن",
-    "areas": "المناطق"
+    "areas": "المناطق",
+    "TopManagement": "الإدارة العليا",
+    "ReportingTo": "تقديم التقارير إلى",
+    "Signin-out": "تسجيل الخروج",
+    "Execuses": "الأعذار",
+    "roles": "التصريحات",
+    "Time": "الوقت"
   },
   "navbar": {
     "Profile": "الملف الشخصي",
@@ -45,12 +51,13 @@
     "permissions": "أذونات",
     "name": "اسم"
   },
-  "CompanyStructure":{
+  "CompanyStructure": {
     "Companies": "الشركات",
     "Departments": "الإدارات",
     "JobTitles": "المسميات الوظيفية",
-    "Emoloyees": "الموظفين" ,
-    "Categories": "الفئات"
+    "Emoloyees": "الموظفين",
+    "Categories": "الفئات",
+    "users": "الموظف"
   },
   "companies": {
     "code": "الكود",
@@ -66,7 +73,7 @@
     "editCompany": "تعديل الادارة",
     "addCompany": "اضافة ادارة"
   },
-  "jobTitles":{
+  "jobTitles": {
     "editJob": "تعديل الوظيفة",
     "addJob": "اضافة وظيفة"
   },
@@ -84,5 +91,122 @@
     "radius": "نصف القطر",
     "edit": "تعديل المنطقة",
     "add": "اضافة منطقة"
+  },
+  "TopManagement": {
+    "TopManagement": "الإدارة العليا",
+    "id": "#",
+    "Title": "مسمى وظيفي"
+  },
+  "reportingTo": {
+    "reportingTo": "تقديم التقارير إلى",
+    "id": "#",
+    "DirectManager": "المدير المباشر",
+    "Employee": "اسم الموظف",
+    "Level": "المستوى"
+  },
+  "SignInOutLog": {
+    "from": "من",
+    "to": "الي",
+    "Department": "الادارة",
+    "Code": "#",
+    "EmployeeName": "اسم الموظف",
+    "JobTitle": "المسميات الوظيفية",
+    "SignInOutLog": "تسجيل الدخول والخروج",
+    "Id": "#",
+    "User": "المستخدم",
+    "SignInTime": "وقت تسجيل الدخول",
+    "SignOutTime": "وقت تسجيل الخروج",
+    "Day": "اليوم",
+    "Company": "الشركة",
+    "Area": "المنطقة",
+    "City": "المدينة"
+  },
+  "Mission": {
+    "MissionReport": "تقرير المهمة",
+    "from": "من",
+    "to": "الي",
+    "Company": "الشركة ",
+    "Department": "الادارة",
+    "JobTitle": "المسميات الوظيفية",
+    "Mission": "تقرير المهمة",
+    "Search": "بحث",
+    "MissionStartDate": "تاريخ بدء المهمة",
+    "MissionEndDate": "تاريخ انتهاء المهمة",
+    "sender": "مرسل",
+    "DirectManager": "المدير المباشر",
+    "status": "الحالة",
+    "details": "التفاصيل"
+  },
+  "Execuses": {
+    "from": "من",
+    "to": "الي",
+    "Company": "الشركة ",
+    "Department": "الادارة",
+    "JobTitle": "المسميات الوظيفية",
+    "Execuses": "الأعذار",
+    "ExcueStartTime": "وقت بدء الأعذار",
+    "ExcueEndTime": "وقت انتهاء الأعذار",
+    "ExcueDay": "ايام الأعذار",
+    "sender": "مرسل",
+    "Search": "بحث",
+    "DirectManager": "المدير المباشر",
+    "status": "الحالة"
+  },
+  "FAQ": {
+    "FAQ": "أسئلة وأجوبة",
+    "id": "#",
+    "Question": "أسئلة",
+    "Answer": "إجابه"
+  },
+  "Policies": {
+    "Policies": "سياسة الشركة",
+    "id": "#",
+    "Title": "مسمى وظيفي",
+    "file": "الملفات",
+    "company": "الشركة",
+    "AddPolicies": "أضف السياسات",
+    "EditPolicies": "تعديل السياسات"
+  },
+  "news": {
+    "news": "الأخبار",
+    "id": "#",
+    "title": "موضوعات",
+    "description": "الأخبار",
+    "company_id": "الشركة",
+    "categories": "الفئات",
+    "companyLogo": "شعار الشركة",
+    "created": "تاريخ",
+    "uploadLogo": "اضافه صوره",
+    "editnews": "تعديل الأخبار",
+    "addnews": "إرسال أخبار جديدة"
+  },
+  "time": {
+    "time": "الوقت",
+    "id": "#",
+    "from": "من",
+    "to": "الي",
+    "days": "الأيام",
+    "areas": "المناطق",
+    "Categories": "الفئات",
+    "AddTime": "إضافة وقت"
+  },
+  "roles": {
+    "roles": "التصريحات",
+    "addroles": "اضافة تصريحات"
+  },
+  "Main": {
+    "MainReport": "التقرير الرئيسي",
+    "from": "من",
+    "to": "الي",
+    "Department": "الادارة",
+    "Code": "#",
+    "EmployeeName": "اسم الموظف",
+    "JobTitle": "المسميات الوظيفية",
+    "Category": "فئة",
+    "Company": "الشركة ",
+    "StartDate": "تاريخ البدء",
+    "managers": "المديرين",
+    "Areas": "المناطق",
+    "Search": "بحث"
   }
 }

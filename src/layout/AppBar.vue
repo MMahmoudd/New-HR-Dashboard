@@ -1,39 +1,15 @@
 <template>
-  <v-app-bar
-    id="app-bar"
-    absolute
-    app
-    height="70"
-    flat
-    clipped-left
-    fixed
-  >
-    <v-container
-      fluid
-      class="justify-content-center"
-    >
+  <v-app-bar id="app-bar" absolute app height="70" flat clipped-left fixed>
+    <v-container fluid class="justify-content-center">
       <v-row class="d-flex justify-space-between align-center">
-        <v-col
-          cols="3"
-          lg="2"
-        >
-          <v-btn
-            class="btn-drawer"
-            @click="setDrawer(!drawer)"
-          >
+        <v-col cols="3" lg="2">
+          <v-btn class="btn-drawer" @click="setDrawer(!drawer)">
             <v-avatar>
-              <v-img
-                width="100"
-                src="../assets/Logos/hr-white@2x.png"
-              />
+              <v-img width="100" src="../assets/Logos/hr-white@2x.png" />
             </v-avatar>
           </v-btn>
         </v-col>
-        <v-col
-          lg="3"
-          cols="3"
-          class="align-content-center"
-        >
+        <v-col lg="3" cols="3" class="align-content-center">
           <v-text-field
             :label="$t('actions.search')"
             type="search"
@@ -44,24 +20,11 @@
             hide-details
           />
         </v-col>
-        <v-menu
-          offset-y
-        >
+        <v-menu offset-y>
           <template v-slot:activator="{ on, attrs }">
-            <h5
-              class="px-2"
-              outlined
-              color="#fff"
-              v-bind="attrs"
-              v-on="on"
-            >
+            <h5 class="px-2" outlined color="#fff" v-bind="attrs" v-on="on">
               {{ selected }}
-              <v-icon
-                class="px-2"
-                color="#fff"
-              >
-                fa-globe
-              </v-icon>
+              <v-icon class="px-2" color="#fff"> fa-globe </v-icon>
             </h5>
           </template>
           <v-list>
@@ -73,7 +36,7 @@
                 plain
                 @click="changeLang('ar')"
               >
-                {{ $t('lang.ar') }}
+                {{ $t("lang.ar") }}
               </v-btn>
             </v-list-item>
             <v-list-item>
@@ -84,47 +47,23 @@
                 plain
                 @click="changeLang('en')"
               >
-                {{ $t('lang.en') }}
+                {{ $t("lang.en") }}
               </v-btn>
             </v-list-item>
           </v-list>
         </v-menu>
-        <v-col
-          cols="1"
-          lg="1"
-          class="text-center"
-        />
-        <v-col
-          cols="1"
-          lg="1"
-          class="text-center"
-        >
-          <v-badge
-            bottom
-            dot
-            color="green"
-            overlap
-          >
-            <v-menu
-              bottom
-              offset-y
-              min-width="200"
-              nudge-bottom="15"
-              eager
-            >
+        <v-col cols="1" lg="1" class="text-center" />
+        <v-col cols="1" lg="1" class="text-center">
+          <v-badge bottom dot color="green" overlap>
+            <v-menu bottom offset-y min-width="200" nudge-bottom="15" eager>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                  dark
-                  icon
-                  v-bind="attrs"
-                  v-on="on"
-                >
+                <v-btn dark icon v-bind="attrs" v-on="on">
                   <v-avatar>
                     <img
                       src="https://cdn.vuetifyjs.com/images/john.jpg"
                       alt="John"
                       height="100"
-                    >
+                    />
                   </v-avatar>
                 </v-btn>
               </template>
@@ -149,15 +88,14 @@
 
                   <v-list-item-title>Profile</v-list-item-title>
                 </v-list-item>
-                <v-list-item
-                  link
-                  @click="logout()"
-                >
+                <v-list-item link @click="logout()">
                   <v-list-item-icon>
                     <v-icon>fa-sign-out-alt</v-icon>
                   </v-list-item-icon>
 
-                  <v-list-item-title>{{ $t('navbar.logout') }}</v-list-item-title>
+                  <v-list-item-title>{{
+                    $t("navbar.logout")
+                  }}</v-list-item-title>
                 </v-list-item>
               </v-list>
             </v-menu>
@@ -169,69 +107,68 @@
 </template>
 
 <script>
-  import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations } from "vuex";
 
-  export default {
-    name: 'DashboardAppBar',
+export default {
+  name: "DashboardAppBar",
 
-    components: {},
+  components: {},
 
-    props: {
-      value: {
-        type: Boolean,
-        default: false,
-      },
+  props: {
+    value: {
+      type: Boolean,
+      default: false,
     },
+  },
 
-    data: () => ({
-      items: [{ title: 'profile' }, { title: 'logout' }],
-      selected: '',
-      Languages: [
-        { text: 'AR' },
-        { text: 'EN' },
-      ],
-    }),
+  data: () => ({
+    items: [{ title: "profile" }, { title: "logout" }],
+    selected: "",
+    Languages: [{ text: "AR" }, { text: "EN" }],
+  }),
 
-    computed: {
-      ...mapState(['drawer']),
-    },
-    created () {
-      if (localStorage.getItem('userLang')) {
-        const userLang = localStorage.getItem('userLang')
-        console.log('userLang :>> ', userLang)
-        this.selected = userLang
-        userLang === 'ar' ? (this.$vuetify.rtl = true) : (this.$vuetify.rtl = false)
-      } else {
-        localStorage.setItem('userLang', 'en')
+  computed: {
+    ...mapState(["drawer"]),
+  },
+  created() {
+    if (localStorage.getItem("userLang")) {
+      const userLang = localStorage.getItem("userLang");
+      console.log("userLang :>> ", userLang);
+      this.selected = userLang;
+      userLang === "ar"
+        ? (this.$vuetify.rtl = true)
+        : (this.$vuetify.rtl = false);
+    } else {
+      localStorage.setItem("userLang", "en");
+    }
+  },
+
+  methods: {
+    selectedLang() {
+      if (this.selected.text === "EN") {
+        this.changeLang("en");
+      } else if (this.selected.text === "AR") {
+        this.changeLang("ar");
       }
     },
-
-    methods: {
-      selectedLang () {
-        if (this.selected.text === 'EN') {
-          this.changeLang('en')
-        } else if (this.selected.text === 'AR') {
-          this.changeLang('ar')
-        }
-      },
-      changeLang (value) {
-        localStorage.setItem('userLang', value)
-        window.location.reload()
-      },
-      changeLTR () {
-        this.$vuetify.rtl = false
-      },
-      changeRTL () {
-        this.$vuetify.rtl = true
-      },
-      ...mapMutations({
-        setDrawer: 'SET_DRAWER',
-      }),
-      logout () {
-        this.$store.commit('logout')
-      },
+    changeLang(value) {
+      localStorage.setItem("userLang", value);
+      window.location.reload();
     },
-  }
+    changeLTR() {
+      this.$vuetify.rtl = false;
+    },
+    changeRTL() {
+      this.$vuetify.rtl = true;
+    },
+    ...mapMutations({
+      setDrawer: "SET_DRAWER",
+    }),
+    logout() {
+      this.$store.commit("logout");
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -242,16 +179,16 @@
   .col {
     align-self: center;
   }
-    .btn-drawer{
+  .btn-drawer {
     background-color: transparent !important;
-    border:none;
+    border: none;
     width: 80px !important;
     height: 80px !important;
     border-radius: 50%;
     box-shadow: none;
     text-align: center;
     padding: unset !important;
-    img{
+    img {
       text-align: center;
       margin: auto;
       height: 100%;
@@ -259,7 +196,9 @@
     }
   }
   .v-image {
-    margin-left: 40px;
+    margin-left: 20px;
+    width: 100%;
+    height: 50%;
   }
   .v-select {
     background-color: transparent !important;
@@ -280,7 +219,7 @@
     }
   }
 }
-  .v-toolbar{
-    right: 0 !important;
-  }
+.v-toolbar {
+  right: 0 !important;
+}
 </style>

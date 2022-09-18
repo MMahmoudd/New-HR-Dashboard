@@ -69,4 +69,16 @@ export default {
         return error.response.data.errors[0]
       })
       },
-}
+      // company/1/departments
+      getDepartmentByCompanyId(id){
+        return Service.get(`${API_URL}/company/${id}/departments`)
+        .then((response) => {
+          if (response.status === 200) {
+              return response.data.response
+          }
+      })
+      .catch(error => {
+        return error.response.data.errors[0]
+      })
+      },
+    }

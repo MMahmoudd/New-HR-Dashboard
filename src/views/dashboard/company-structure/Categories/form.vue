@@ -1,24 +1,18 @@
 <template>
-  <v-container
-    id="regular-tables"
-    fluid
-    tag="section"
-  >
+  <v-container id="regular-tables" fluid tag="section">
     <v-card class="py-5">
       <v-card-title>
-        {{ this.$route.params.id ? $t('departments.editCompany') : $t('departments.addCompany') }}
+        {{
+          this.$route.params.id
+            ? $t("departments.editCompany")
+            : $t("departments.addCompany")
+        }}
       </v-card-title>
       <template>
-        <v-form
-          v-model="valid"
-          @submit.prevent="submitForm()"
-        >
+        <v-form v-model="valid" @submit.prevent="submitForm()">
           <v-container fluid>
             <v-row class="mx-md-16 px-md-16">
-              <v-col
-                cols="12"
-                md="6"
-              >
+              <v-col cols="12" md="6">
                 <v-text-field
                   v-model="data.name"
                   :label="$t('departments.Name')"
@@ -35,32 +29,27 @@
               :loading="loading"
               :disabled="disabled"
             >
-              {{ this.$route.params.id ? $t('actions.save') : $t('actions.add') }}
+              {{
+                this.$route.params.id ? $t("actions.save") : $t("actions.add")
+              }}
             </v-btn>
           </v-container>
         </v-form>
       </template>
     </v-card>
-    <v-dialog
-      v-model="editDailog"
-      width="500"
-    >
-      <v-card
-        class="text-center"
-      >
+    <v-dialog v-model="editDailog" width="500">
+      <v-card class="text-center">
         <base-material-card
           :title="$t('actions.UpdateConfirmation')"
           color="green"
           class="pt-12"
         >
           <v-card-text class="mt-2">
-            {{ $t('actions.areYouSureToUpdate') }}
+            {{ $t("actions.areYouSureToUpdate") }}
             <v-text-field
               v-model="password"
               :type="show1 ? 'text' : 'password'"
-              :append-icon="
-                show1 ? 'mdi-lock-outline' : 'mdi-lock-outline'
-              "
+              :append-icon="show1 ? 'mdi-lock-outline' : 'mdi-lock-outline'"
               :placeholder="$t('login.password')"
               :rules="[rules.required, rules.min]"
               outlined
@@ -77,14 +66,10 @@
               :disabled="confirmDisabled || password.length <= 7"
               @click="updateContent()"
             >
-              {{ $t('actions.save') }}
+              {{ $t("actions.save") }}
             </v-btn>
-            <v-btn
-              color="error"
-              text
-              @click="editDailog = false"
-            >
-              {{ $t('actions.close') }}
+            <v-btn color="error" text @click="editDailog = false">
+              {{ $t("actions.close") }}
             </v-btn>
           </v-card-actions>
         </base-material-card>
@@ -115,106 +100,106 @@
   </v-container>
 </template>
 <script>
-  import { ServiceFactory } from '../../../../services/serviceFactory'
-  const Services = ServiceFactory.get('categories')
-  export default {
-    name: 'CompanyForm',
-    data: (vm) => ({
-      dataLoading: false,
-      valid: false,
-      data: {
-        id: null,
-        name: '',
-      },
-      password: '',
-      show1: false,
-      rules: {
-        required: (value) => !!value || 'Required.',
-        min: (v) => v.length >= 8 || 'Min 8 characters',
-      },
-      logo: null,
-      editDailog: false,
-      successSnackbar: false,
-      errorSnackbar: false,
-      timeout: 3000,
-      successMessage: '',
-      errorMessage: '',
-      loading: false,
-      disabled: false,
-      confirmLoading: false,
-      confirmDisabled: false,
-    }),
-    created () {
+import { ServiceFactory } from "../../../../services/serviceFactory";
+const Services = ServiceFactory.get("categories");
+export default {
+  name: "CompanyForm",
+  data: (vm) => ({
+    dataLoading: false,
+    valid: false,
+    data: {
+      id: null,
+      name: "",
+    },
+    password: "",
+    show1: false,
+    rules: {
+      required: (value) => !!value || "Required.",
+      min: (v) => v.length >= 8 || "Min 8 characters",
+    },
+    logo: null,
+    editDailog: false,
+    successSnackbar: false,
+    errorSnackbar: false,
+    timeout: 3000,
+    successMessage: "",
+    errorMessage: "",
+    loading: false,
+    disabled: false,
+    confirmLoading: false,
+    confirmDisabled: false,
+  }),
+  created() {
+    if (this.$route.params.id) {
+      this.fetchOneItem(this.$route.params.id);
+    }
+  },
+  methods: {
+    confirm() {
+      this.editDailog = true;
+    },
+    async submitForm() {
+      const formData = {
+        name: this.data.name,
+      };
       if (this.$route.params.id) {
-        this.fetchOneItem(this.$route.params.id)
+        this.confirm();
+      } else {
+        this.loading = true;
+        this.disabled = true;
+        this.newItem(formData);
       }
     },
-    methods: {
-      confirm () {
-        this.editDailog = true
-      },
-      async  submitForm () {
-        const formData = {
-          name: this.data.name,
-        }
-        if (this.$route.params.id) {
-          this.confirm()
-        } else {
-          this.loading = true
-          this.disabled = true
-          this.newItem(formData)
-        }
-      },
-      async newItem (data) {
-        const item = await Services.addItem(data)
-        console.log('new Item item', item)
-        if (item.status === 200) {
-          this.successMessage = 'Successful'
-          this.successSnackbar = true
-          setTimeout(() => {
-            this.$router.push('/Categories')
-          }, 1500)
-        } else {
-          this.errorMessage = item
-          this.errorSnackbar = true
-        }
-        this.loading = false
-        this.disabled = false
-      },
-      async updateContent () {
-        const formData = {
-          name: this.data.name,
-          password: this.password,
-          _method: 'put',
-        }
-        const item = await Services.updateItem(this.$route.params.id, formData)
-        if (item.status === 200) {
-          this.editDailog = false
-          this.successMessage = 'Successful'
-          this.successSnackbar = true
-          setTimeout(() => {
-            this.$router.push('/Categories')
-          }, 1500)
-        } else {
-          this.editDailog = false
-          this.errorMessage = item
-          this.errorSnackbar = true
-        }
-        this.loading = false
-        this.disabled = false
-      },
-      async fetchOneItem (id) {
-        this.dataLoading = true
-        const item = await Services.fetchOneItem(id)
-        console.log('item.data :>> ', item.data)
-        this.data = item.data
-        this.dataLoading = false
-      },
+    async newItem(data) {
+      const item = await Services.addItem(data);
+      console.log("new Item item", item);
+      if (item.status === 200) {
+        this.successMessage = "Successful";
+        this.successSnackbar = true;
+        setTimeout(() => {
+          this.$router.push("/Categories");
+        }, 1500);
+      } else {
+        this.errorMessage = item;
+        this.errorSnackbar = true;
+      }
+      this.loading = false;
+      this.disabled = false;
     },
-  }
+    async updateContent() {
+      const formData = {
+        name: this.data.name,
+        password: this.password,
+        _method: "put",
+      };
+      const item = await Services.updateItem(this.$route.params.id, formData);
+      if (item.status === 200) {
+        this.editDailog = false;
+        this.successMessage = "Successful";
+        this.successSnackbar = true;
+        setTimeout(() => {
+          this.$router.push("/Categories");
+        }, 1500);
+      } else {
+        this.editDailog = false;
+        this.errorMessage = item;
+        this.errorSnackbar = true;
+      }
+      this.loading = false;
+      this.disabled = false;
+    },
+    async fetchOneItem(id) {
+      this.dataLoading = true;
+      const item = await Services.fetchOneItem(id);
+      console.log("item.data :>> ", item.data);
+      this.data = item.data;
+      this.dataLoading = false;
+    },
+  },
+};
 </script>
 <style>
-a{
+a {
   text-decoration: none;
 }
 </style>

@@ -69,4 +69,16 @@ export default {
         return error.response.data.errors[0]
       })
       },
+
+      getAreaByCity (id) {
+        return Service.get(`${API_URL}/city/${id}/areas`)
+        .then((response) => {
+          if (response.status === 200) {
+              return response.data.response
+          }
+      })
+      .catch(error => {
+        return error.response.data.errors[0]
+      })
+      },
 }

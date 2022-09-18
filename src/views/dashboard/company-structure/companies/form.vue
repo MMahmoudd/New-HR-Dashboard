@@ -39,6 +39,8 @@
                   color="green"
                   required
                 />
+                                  <!-- prefix="tn" -->
+
               </v-col>
               <v-col
                 v-if="data.image"
@@ -211,7 +213,7 @@
       async  submitForm () {
         const formData = new FormData()
         this.data.name && formData.append('name', this.data.name)
-        this.data.code && formData.append('code', this.data.code)
+        this.data.code && formData.append('code',  this.data.code)
         this.logo && formData.append('image', this.logo)
 
         if (this.$route.params.id) {
@@ -228,9 +230,9 @@
         if (item.status === 200) {
           this.successMessage = 'Successful'
           this.successSnackbar = true
-          setTimeout(() => {
-            this.$router.push('/Companies')
-          }, 1500)
+          // setTimeout(() => {
+          //   this.$router.push('/Companies')
+          // }, 1500)
         } else {
           this.errorMessage = item
           this.errorSnackbar = true
@@ -249,9 +251,9 @@
           this.editDailog = false
           this.successMessage = 'Successful'
           this.successSnackbar = true
-          setTimeout(() => {
-            this.$router.push('/Companies')
-          }, 1500)
+          // setTimeout(() => {
+          //   this.$router.push('/Companies')
+          // }, 1500)
         } else {
           this.editDailog = false
           this.errorMessage = item

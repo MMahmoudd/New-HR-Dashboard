@@ -35,9 +35,9 @@
         :items="List"
         :items-per-page="20"
         :footer-props="{
-          &quot;items-per-page-options&quot;: [10, 20, 30, 40, 50],
+      'items-per-page-options': [10, 20, 30, 40, 50],
         }"
-        item-key="id"
+       :item-key="id"
         show-select
         :server-items-length="total"
         :page-count="numberOfPages"
