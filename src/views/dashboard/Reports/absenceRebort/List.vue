@@ -104,6 +104,7 @@
             :label="$t('Main.Department')"
             outlined
             required
+            @input="getjobTitl(list.department_id)"
           />
         </v-col>
         <v-col cols="6" md="3">
@@ -451,8 +452,10 @@ export default {
       const data = await CompanyService.getAllItems();
       this.CompaniesList = data.data;
     },
-    async getjobTitl() {
-      const data = await jobTitleServices.getAllItems();
+    async getjobTitl(id) {
+      console.log(id);
+      const data = await jobTitleServices.getjobTitlByDepartmentsId(id);
+      console.log("data :>> ", data);
       this.jobTitlsList = data.data;
     },
     async getDepartments(id) {
