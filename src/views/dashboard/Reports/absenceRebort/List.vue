@@ -123,7 +123,7 @@
 
     <v-card>
       <v-card-title>
-        {{ $t("Absence Report ") }}
+        {{ $t("absenceRebort.AbsenceReport") }}
         <v-spacer />
         <v-spacer />
         <v-btn
@@ -298,32 +298,39 @@ export default {
       min: (v) => v.length >= 8 || "Min 8 characters",
     },
     headers: [
-      { text: vm.$t("code"), sortable: false, value: "code" },
-      { text: vm.$t("full name"), sortable: false, value: "full_name" },
+      { text: vm.$t("absenceRebort.code"), sortable: false, value: "code" },
       {
-        text: vm.$t("day"),
+        text: vm.$t("absenceRebort.fullname"),
+        sortable: false,
+        value: "full_name",
+      },
+      {
+        text: vm.$t("absenceRebort.Day"),
         sortable: false,
         value: "day",
       },
-      { text: vm.$t("nationalId"), sortable: false, value: "nationalId" },
-
       {
-        text: vm.$t("Company"),
+        text: vm.$t("absenceRebort.nationalId"),
+        sortable: false,
+        value: "nationalId",
+      },
+      {
+        text: vm.$t("absenceRebort.Company"),
         sortable: false,
         value: "Company",
       },
       {
-        text: vm.$t("Department"),
+        text: vm.$t("absenceRebort.Departments"),
         sortable: false,
         value: "Department",
       },
       {
-        text: vm.$t("JobTitle"),
+        text: vm.$t("absenceRebort.JobTitles"),
         sortable: false,
         value: "JobTitle",
       },
       {
-        text: vm.$t("Category"),
+        text: vm.$t("absenceRebort.Category"),
         sortable: false,
         value: "Category",
       },

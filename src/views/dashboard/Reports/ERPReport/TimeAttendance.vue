@@ -10,12 +10,12 @@
           :loading="loading"
           @click="fetchAllItems()"
         >
-          {{ $t("Search") }}
+          {{ $t("actions.search") }}
         </v-btn>
       </v-card-title>
 
       <template>
-        <v-row cols="6" md="3">
+        <v-row cols="6" md="3" style="margin: auto">
           <div class="pl-4">
             <v-menu
               ref="menu"
@@ -28,7 +28,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="keyword.dateFrom"
-                  label="from"
+                  :label="$t('actions.from')"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -60,7 +60,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="keyword.dateTo"
-                  label="to"
+                  :label="$t('actions.to')"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -82,14 +82,14 @@
           </div>
         </v-row>
       </template>
-      <v-row class="pl-4">
+      <v-row class="pl-4" style="margin: auto">
         <v-col cols="6" md="4">
           <v-select
             v-model="list.company_id"
             :items="CompaniesList"
             item-text="name"
             item-value="id"
-            :label="$t('company')"
+            :label="$t('actions.Company')"
             outlined
             required
           />
@@ -317,38 +317,38 @@ export default {
     },
     headers: [
       {
-        text: vm.$t("PersonalNumber"),
+        text: vm.$t("TimeAttendance.PersonalNumber"),
         sortable: false,
         value: "PersonalNumber",
       },
       {
-        text: vm.$t("Transaction Date"),
+        text: vm.$t("TimeAttendance.TransactionDate"),
         sortable: false,
         value: "TransactionDate",
       },
-      { text: vm.$t("type"), sortable: false, value: "type" },
+      { text: vm.$t("TimeAttendance.type"), sortable: false, value: "type" },
       {
-        text: vm.$t("Start Time"),
+        text: vm.$t("TimeAttendance.StartTime"),
         sortable: false,
         value: "StartTime",
       },
       {
-        text: vm.$t("End Time"),
+        text: vm.$t("TimeAttendance.EndTime"),
         sortable: false,
         value: "End Time",
       },
       {
-        text: vm.$t("Category"),
+        text: vm.$t("TimeAttendance.Category"),
         sortable: false,
         value: "Category",
       },
       {
-        text: vm.$t("Refrence"),
+        text: vm.$t("TimeAttendance.Refrence"),
         sortable: false,
         value: "Refrence",
       },
       {
-        text: vm.$t("Job Identification"),
+        text: vm.$t("TimeAttendance.JobIdentification"),
         sortable: false,
         value: "Job Identification",
       },
@@ -357,7 +357,7 @@ export default {
 
       // { text: vm.$t('actions.actions'), value: 'actions', sortable: false },
     ],
-    filename: "absenceSheetTransaction",
+    filename: "hr Time Attendance",
     bookType: "xlsx",
     autoWidth: true,
   }),
@@ -386,7 +386,6 @@ export default {
       // console.log('this.keyword', this.keyword)
       this.dataLoading = true;
       const { page, itemsPerPage } = this.options;
-
       const pageNumber = page - 1;
       const List = await Services.getAllItems(
         itemsPerPage,
@@ -429,24 +428,36 @@ export default {
     },
     async exportExel() {
       this.loading = true;
-      const List = await Services.getAllItems();
+      const { page, itemsPerPage } = this.options;
+      const pageNumber = page - 1;
+      const List = await Services.getAllItems(
+        itemsPerPage,
+        page,
+        pageNumber,
+        this.keyword,
+        this.list
+      );
       import("@/vendor/Export2Excel").then((excel) => {
         const tHeader = [
-          "Excue Start Time",
-          "Excue End Time",
-          "Excue Day",
-          "sender",
-          "DirectManager",
-          "status",
+          "PersonalNumber",
+          "Transaction Date",
+          "type",
+          "StartTime",
+          "End Time",
+          "Category",
+          "Refrence",
+          "Job Identification",
         ];
         const list = List.data.map((item) => {
           return {
-            from_time: item.from_time,
-            to_time: item.to_time,
-            permission_day: item.permission_day,
-            sender: item.sender,
-            dircet_manager: item.dircet_manager,
-            status: item.status,
+            PersonalNumber: item.PersonalNumber,
+            TransactionDate: item.TransactionDate,
+            type: item.type,
+            StartTime: item.StartTime,
+            EndTime: item.EndTime,
+            Category: item.Category,
+            Refrence: item.Refrence,
+            JobIdentification: item.JobIdentification,
           };
         });
         const data = this.formatJson(list);

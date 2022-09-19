@@ -10,12 +10,12 @@
           :loading="loading"
           @click="fetchAllItems()"
         >
-          {{ $t("Search") }}
+          {{ $t("actions.search") }}
         </v-btn>
       </v-card-title>
 
       <template>
-        <v-row cols="6" md="3">
+        <v-row cols="6" md="3" style="margin: auto">
           <div class="pl-4">
             <v-menu
               ref="menu"
@@ -28,7 +28,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="keyword.dateFrom"
-                  label="from"
+                  :label="$t('actions.from')"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -60,7 +60,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="keyword.dateTo"
-                  label="to"
+                  :label="$t('actions.to')"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -82,14 +82,14 @@
           </div>
         </v-row>
       </template>
-      <v-row class="pl-4">
+      <v-row class="pl-4" style="margin: auto">
         <v-col cols="6" md="4">
           <v-select
             v-model="list.company_id"
             :items="CompaniesList"
             item-text="name"
             item-value="id"
-            :label="$t('company')"
+            :label="$t('actions.Company')"
             outlined
             required
           />
@@ -317,31 +317,40 @@ export default {
     },
     headers: [
       {
-        text: vm.$t("Personnal Number"),
+        text: vm.$t("penaltyReport.code"),
         sortable: false,
-        value: "PersonnalNumber",
+        value: "code",
       },
       {
-        text: vm.$t("Transaction Date"),
+        text: vm.$t("penaltyReport.id"),
         sortable: false,
-        value: "Transaction Date",
+        value: "id",
       },
       {
-        text: vm.$t("Disciplinary Type Code"),
+        text: vm.$t("penaltyReport.fullname"),
         sortable: false,
-        value: "Disciplinary Type Code",
+        value: "full_name",
       },
       {
-        text: vm.$t("Discipline"),
+        text: vm.$t("penaltyReport.DisciplineRepetition"),
         sortable: false,
-        value: "Discipline",
+        value: "Discipline_Repetition",
+      },
+      {
+        text: vm.$t("penaltyReport.DisciplinaryTypeDescription"),
+        sortable: false,
+        value: "Disciplinary_Type_Description",
       },
 
-      // { text: vm.$t("status"), sortable: false, value: "status" },
+      {
+        text: vm.$t("penaltyReport.DisciplinaryTypeCode"),
+        sortable: false,
+        value: "Disciplinary_Type_Code",
+      },
 
       // { text: vm.$t('actions.actions'), value: 'actions', sortable: false },
     ],
-    filename: "absenceSheetTransaction",
+    filename: "Disciplinary Action",
     bookType: "xlsx",
     autoWidth: true,
   }),
@@ -412,25 +421,33 @@ export default {
       this.loading = false;
     },
     async exportExel() {
+      const { page, itemsPerPage } = this.options;
+      const pageNumber = page - 1;
       this.loading = true;
-      const List = await Services.getAllItems();
+      const List = await Services.getAllItems(
+        itemsPerPage,
+        page,
+        pageNumber,
+        this.keyword,
+        this.list
+      );
       import("@/vendor/Export2Excel").then((excel) => {
         const tHeader = [
-          "Excue Start Time",
-          "Excue End Time",
-          "Excue Day",
-          "sender",
-          "DirectManager",
-          "status",
+          "code",
+          "id",
+          "full name",
+          "Discipline Repetition",
+          "Disciplinary Type Description",
+          "Disciplinary Type Code",
         ];
         const list = List.data.map((item) => {
           return {
-            from_time: item.from_time,
-            to_time: item.to_time,
-            permission_day: item.permission_day,
-            sender: item.sender,
-            dircet_manager: item.dircet_manager,
-            status: item.status,
+            code: item.code,
+            id: item.id,
+            full_name: item.full_name,
+            Discipline_Repetition: item.Discipline_Repetition,
+            Disciplinary_Type_Description: item.Disciplinary_Type_Description,
+            Disciplinary_Type_Code: item.Disciplinary_Type_Code,
           };
         });
         const data = this.formatJson(list);

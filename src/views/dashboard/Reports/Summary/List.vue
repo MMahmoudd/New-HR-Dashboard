@@ -122,7 +122,7 @@
 
     <v-card>
       <v-card-title>
-        {{ $t("sammry") }}
+        {{ $t("Summary.SummaryReport") }}
         <v-spacer />
         <v-spacer />
         <v-btn
@@ -293,36 +293,40 @@ export default {
       min: (v) => v.length >= 8 || "Min 8 characters",
     },
     headers: [
-      { text: vm.$t("code"), sortable: false, value: "code" },
-      { text: vm.$t("full name"), sortable: false, value: "full_name" },
-      { text: vm.$t("nationalId"), sortable: false, value: "nationalId" },
+      { text: vm.$t("Summary.code"), sortable: false, value: "code" },
+      { text: vm.$t("Summary.fullname"), sortable: false, value: "full_name" },
       {
-        text: vm.$t("total absence days"),
+        text: vm.$t("Summary.nationalId"),
+        sortable: false,
+        value: "nationalId",
+      },
+      {
+        text: vm.$t("Summary.totalabsencedays"),
         sortable: false,
         value: "total_absence_days",
       },
       {
-        text: vm.$t("total vacation days"),
+        text: vm.$t("Summary.totalvacationdays"),
         sortable: false,
         value: "total_vacation_days",
       },
       {
-        text: vm.$t("total_mission_days"),
+        text: vm.$t("Summary.totalmissiondays"),
         sortable: false,
         value: "total_mission_days",
       },
       {
-        text: vm.$t("total_attendace_days"),
+        text: vm.$t("Summary.totalattendacedays"),
         sortable: false,
         value: "total_attendace_days",
       },
       {
-        text: vm.$t("total_late"),
+        text: vm.$t("Summary.totallate"),
         sortable: false,
         value: "total_late",
       },
     ],
-    filename: "Main",
+    filename: "Summary",
     bookType: "xlsx",
     autoWidth: true,
   }),
@@ -388,31 +392,37 @@ export default {
       this.loading = false;
     },
     async exportExel() {
+      const { page, itemsPerPage } = this.options;
+      const pageNumber = page - 1;
       this.loading = true;
-      const List = await Services.getAllItems();
+      const List = await Services.getAllItems(
+        itemsPerPage,
+        page,
+        pageNumber,
+        this.keyword,
+        this.list
+      );
       import("@/vendor/Export2Excel").then((excel) => {
         const tHeader = [
-          "Code",
-          "EmployeeName",
-          "Job Title",
-          "Category",
-          "Company",
-          "Start Date",
-          "managers",
-          "Areas",
-          "Department",
+          "code",
+          "full name",
+          "national Id",
+          "total absence days",
+          "total vacation days",
+          "total mission days",
+          "total attendace days",
+          "total_late",
         ];
         const list = List.data.map((item) => {
           return {
-            Code: item.Code,
-            FullName: item.FullName,
-            JobTitle: item.JobTitle,
-            Category: item.Category,
-            Company: item.Company,
-            StartDate: item.StartDate,
-            managers: item.managers,
-            Areas: item.Areas,
-            Department: item.Department,
+            code: item.code,
+            full_name: item.full_name,
+            nationalId: item.nationalId,
+            total_absence_days: item.total_absence_days,
+            total_vacation_days: item.total_vacation_days,
+            total_mission_days: item.total_mission_days,
+            total_attendace_days: item.total_attendace_days,
+            total_late: item.total_late,
           };
         });
         const data = this.formatJson(list);

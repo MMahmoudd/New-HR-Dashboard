@@ -9,6 +9,12 @@
     "en": "English"
   },
   "sidebar": {
+    "Allinonereport": "الكل في تقرير واحد",
+
+    "penalty": "تقرير عقوبة",
+    "AbsenceReport": "تقرير الغياب",
+    "SummaryReport": "تقرير ملخص",
+    "Vacation": "تقرير الاجازة",
     "companyStructure": "هيكل الشركة",
     "dashboard": "لوحة القيادة",
     "Administrator": "المسؤول",
@@ -30,6 +36,10 @@
     "logout": "تسجيل خروج"
   },
   "actions": {
+    "from": "من",
+    "Companies": "الشركات",
+
+    "to": "الي",
     "actions": "الإجراءات",
     "edit": "تعديل",
     "noData": "لا يوجد بيانات",
@@ -208,5 +218,106 @@
     "managers": "المديرين",
     "Areas": "المناطق",
     "Search": "بحث"
+  },
+  "vacation": {
+    "vacation": "تقرير الاجازة",
+    "code": "#",
+    "EmployeeName": "اسم الموظف",
+    "JobTitle": "المسميات الوظيفية",
+    "Category": "فئة",
+    "StartDate": "تاريخ البدء",
+    "Department": "الادارة",
+    "Company": "الشركة ",
+    "status": "الحالة",
+    "AnnualPool": "تجمع سنوي",
+    "CasualPool": "تجمع سنوي الغير رسمي ",
+    "VacationStartDate": "تاريخ بدء الإجازة",
+    "VacationEnd Date": "تاريخ انتهاء الإجازة",
+    "Totaldays": "مجموع الأيام",
+    "RemainAnnualPool": "Remain Annual Pool",
+    "RemaincasualPool": "Remain casual Pool",
+    "AnnualPoolUsed": "Annual Pool Used"
+  },
+  "penalty": {
+    "penaltyReport": "تقرير عقوبة",
+    "Company": "الشركة ",
+    "code": "#",
+    "fullname": "الاسم الكامل",
+    "DisciplinaryTypeDescription": "وصف نوع الانضباط",
+    "DisciplinaryTypeCode": "رمز نوع  الانضباط",
+    "DisciplineNotes": "ملاحظات الانضباط",
+    "DisciplineRepetition": "تكرار الانضباط"
+  },
+  "TimeAttendance": {
+    "type": "النوع",
+    "TimeAttendance": "hr Time Attendance",
+    "PersonalNumber": "الرقم الشخصي",
+    "TransactionDate": "تاريخ الصفقة",
+    "StartTime": "وقت البدء",
+    "EndTime": "وقت النهاية",
+    "Category": "فئة",
+    "Refrence": "المرجعي",
+    "JobIdentification": "تحديد الوظيفة"
+  },
+  "WorkerPlanner": {
+    "WorkerPlanner": "مخطط عامل الموارد البشرية ",
+    "ProfileCalendarType": "نوع تقويم الملف الشخصي",
+    "Date": "تاريخ",
+    "ProfileId": "رقم البطاقة الشخصية",
+    "RelationNumber": "رقم العلاقة"
+  },
+  "penaltyReport": {
+    "code": "رمز",
+    "id": "#",
+    "DisciplinaryTypeDescription": "وصف نوع الانضباط",
+    "DisciplineRepetition": "ملاحظات الانضباط",
+    "DisciplinaryTypeCode": "رمز نوع  الانضباط",
+    "fullname": "الاسم الكامل"
+  },
+  "absenceSheet": {
+    "PersonalNumber": "الرقم الشخصي",
+    "FromDateTime": "من تاريخ الوقت",
+    "ToDateTime": "إلى تاريخ الوقت",
+    "AbsenceCode": "كود الغياب"
+  },
+  "absenceRebort": {
+    "AbsenceReport": "تقرير الغياب",
+    "code": "#",
+    "fullname": "الاسم الكامل",
+    "Day": "الأيام",
+    "nationalId": "الهوية الوطنية",
+    "Company": "الشركة ",
+    "Departments": "الإدارات",
+    "JobTitles": "المسميات الوظيفية",
+    "Category": "فئة"
+  },
+  "Summary": {
+    "code": "#",
+    "SummaryReport": "تقرير ملخص",
+    "fullname": "الاسم الكامل",
+    "nationalId": "الهوية الوطنية",
+    "totalabsencedays": "أيام الغياب الكلي",
+    "totalvacationdays": "إجمالي أيام الإجازة",
+    "totalmissiondays": "إجمالي أيام المهمة",
+    "totalattendacedays": "إجمالي أيام الحضور",
+    "totallate": "مجموع في وقت متأخر"
+  },
+  "allrebort": {
+    "Allinonereport": "الكل في تقرير واحد",
+
+    "code": "#",
+    "User": "المستخدم",
+    "Company": "الشركة ",
+    "Category": "فئة",
+    "Areas": "المناطق",
+    "fromday": "من اليوم",
+    "today": "اليوم",
+    "type": "النوع",
+    "subtype": "نوع فرعي",
+    "JobTitles": "المسميات الوظيفية",
+    "latency": "وقت الإستجابة",
+    "fromtime": "من وقت",
+    "totime": "الى وقت",
+    "totalworkingtime": "إجمالي وقت العمل"
   }
 }

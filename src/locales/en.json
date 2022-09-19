@@ -9,6 +9,11 @@
     "en": "English"
   },
   "sidebar": {
+    "AbsenceReport": "Absence Report",
+    "Allinonereport": "All In One Report",
+
+    "penalty": "penalty Report",
+    "Vacation": "Vacation",
     "companyStructure": "Company Structure",
     "dashboard": "Dashboard",
     "Administrator": "Administrator",
@@ -31,12 +36,15 @@
     "logout": "Logout"
   },
   "actions": {
+    "from": "From",
+    "to": "To",
     "actions": "Actions",
     "edit": "Edit",
     "noData": "No Data",
     "Add": "Add New",
     "save": "Save Changs",
     "add": "Add",
+    "Company": "Company ",
     "moreDetails": "More Details",
     "close": "Close",
     "accept": "Accept",
@@ -216,5 +224,106 @@
     "Areas": "Areas",
     "Department": "Department",
     "Search": "Search"
+  },
+
+  "vacation": {
+    "vacation": "Vacation Report",
+    "code": "Code",
+    "EmployeeName": "Employee Name",
+    "JobTitle": "Job Title",
+    "Category": "Category",
+    "StartDate": "Start Date",
+    "Department": "Department",
+    "Company": "Company ",
+    "status": "Status",
+    "AnnualPool": "Annual Pool",
+    "CasualPool": "Casual Pool",
+    "VacationStartDate": "Vacation Start Date",
+    "VacationEndDate": "Vacation End Date",
+    "Totaldays": "Total days",
+    "RemainAnnualPool": "Remain Annual Pool",
+    "RemaincasualPool": "Remain casual Pool",
+    "AnnualPoolUsed": "Annual Pool Used"
+  },
+  "penalty": {
+    "penaltyReport": "penalty Report",
+    "Company": "Company ",
+    "code": "Code",
+    "fullname": "full name",
+    "DisciplinaryTypeDescription": "Disciplinary Type Description",
+    "DisciplinaryTypeCode": "Disciplinary Type Code",
+    "DisciplineNotes": "DisciplineNotes",
+    "DisciplineRepetition": "Discipline Repetition"
+  },
+  "TimeAttendance": {
+    "type": "type",
+    "TimeAttendance": "hr Time Attendance",
+    "PersonalNumber": "Personal Number",
+    "TransactionDate": "Transaction Date",
+    "StartTime": "Start Time",
+    "EndTime": "End Time",
+    "Category": "Category",
+    "Refrence": "Refrence",
+    "JobIdentification": "Job Identification"
+  },
+  "WorkerPlanner": {
+    "WorkerPlanner": "Hr Worker Planner ",
+    "ProfileCalendarType": "Profile Calendar Type",
+    "Date": "Date",
+    "ProfileId": "Profile Id",
+    "RelationNumber": "Relation Number"
+  },
+  "penaltyReport": {
+    "code": "code",
+    "id": "id",
+    "DisciplinaryTypeDescription": "Disciplinary Type Description",
+    "DisciplineRepetition": "Discipline Repetition",
+    "DisciplinaryTypeCode": "Disciplinary Type Code",
+    "fullname": "fullname"
+  },
+  "absenceSheet": {
+    "PersonalNumber": "Personal Number",
+    "FromDateTime": "From Date Time",
+    "ToDateTime": "To Date Time",
+    "AbsenceCode": "Absence Code"
+  },
+  "absenceRebort": {
+    "AbsenceReport": "Absence Report",
+    "code": "code",
+    "fullname": "full name",
+    "Day": "Day",
+    "nationalId": "nationalId",
+    "Company": "Company ",
+    "Departments": "Departments",
+    "JobTitles": "Job Titles",
+    "Category": "Category"
+  },
+  "Summary": {
+    "code": "code",
+    "SummaryReport": "Summary Report",
+    "fullname": "full name",
+    "nationalId": "national Id",
+    "totalabsencedays": "total absence days",
+    "totalvacationdays": "total vacation days",
+    "totalmissiondays": "total mission days",
+    "totalattendacedays": "total attendace days",
+    "totallate": "total late"
+  },
+  "allrebort": {
+    "Allinonereport": "All in one report",
+    "code": "code",
+    "User": "user",
+    "Company": "Company",
+    "Category": "Category",
+    "Areas": "area",
+    "fromday": "from day",
+    "today": "to day",
+    "type": "Type",
+    "subtype": "Sub type",
+    "JobTitles": "job title",
+    "latency": "latency",
+    "fromtime": "from time",
+    "totime": "to time",
+    "totalworkingtime": "total working time"
   }
 }

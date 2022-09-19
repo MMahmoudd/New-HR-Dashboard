@@ -10,7 +10,7 @@
           :loading="loading"
           @click="fetchAllItems()"
         >
-          {{ $t("Search") }}
+          {{ $t("Main.Search") }}
         </v-btn>
       </v-card-title>
 
@@ -28,7 +28,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="keyword.dateFrom"
-                  label="from"
+                  :label="$t('Main.from')"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -60,7 +60,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="keyword.dateTo"
-                  label="to"
+                  :label="$t('Main.to')"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -89,7 +89,7 @@
             :items="CompaniesList"
             item-text="name"
             item-value="id"
-            :label="$t('company')"
+            :label="$t('Main.Company')"
             outlined
             required
             @input="getDepartments(list.company_id)"
@@ -101,7 +101,7 @@
             :items="DepartmentsList"
             item-text="name"
             item-value="id"
-            :label="$t('department')"
+            :label="$t('Main.Department')"
             outlined
             required
           />
@@ -112,7 +112,7 @@
             :items="jobTitlsList"
             item-text="name"
             item-value="id"
-            :label="$t('jobTitl')"
+            :label="$t('Main.JobTitle')"
             outlined
             required
           />
@@ -122,7 +122,7 @@
 
     <v-card>
       <v-card-title>
-        {{ $t("Vacation Report") }}
+        {{ $t("vacation.vacation") }}
         <v-spacer />
         <v-spacer />
         <v-btn
@@ -335,35 +335,63 @@ export default {
       min: (v) => v.length >= 8 || "Min 8 characters",
     },
     headers: [
-      { text: vm.$t("Code"), sortable: false, value: "Code" },
-      { text: vm.$t("Employee Name"), sortable: false, value: "FullName" },
-      { text: vm.$t("Job Title"), sortable: false, value: "JobTitle" },
-      { text: vm.$t("Category"), sortable: false, value: "Category" },
-      { text: vm.$t("Start Date"), sortable: false, value: "StartDate" },
-      { text: vm.$t("department"), sortable: false, value: "department" },
-      { text: vm.$t("Company"), sortable: false, value: "Company" },
-      { text: vm.$t("status"), sortable: false, value: "status" },
-      { text: vm.$t("Annual Pool"), sortable: false, value: "annual_balance" },
-      { text: vm.$t("Casual Pool"), sortable: false, value: "casual_balance" },
+      { text: vm.$t("vacation.code"), sortable: false, value: "Code" },
       {
-        text: vm.$t("Vacation Start Date"),
+        text: vm.$t("vacation.EmployeeName"),
+        sortable: false,
+        value: "FullName",
+      },
+      { text: vm.$t("vacation.JobTitle"), sortable: false, value: "JobTitle" },
+      { text: vm.$t("vacation.Category"), sortable: false, value: "Category" },
+      {
+        text: vm.$t("vacation.StartDate"),
+        sortable: false,
+        value: "StartDate",
+      },
+      {
+        text: vm.$t("vacation.Department"),
+        sortable: false,
+        value: "department",
+      },
+      { text: vm.$t("vacation.Company"), sortable: false, value: "Company" },
+      { text: vm.$t("vacation.status"), sortable: false, value: "status" },
+      {
+        text: vm.$t("vacation.AnnualPool"),
+        sortable: false,
+        value: "annual_balance",
+      },
+      {
+        text: vm.$t("vacation.CasualPool"),
+        sortable: false,
+        value: "casual_balance",
+      },
+      {
+        text: vm.$t("vacation.VacationStartDate"),
         sortable: false,
         value: "from_day",
       },
-      { text: vm.$t("Vacation End Date"), sortable: false, value: "to_day" },
-      { text: vm.$t("Total days"), sortable: false, value: "total_days" },
       {
-        text: vm.$t("Remain Annual Pool"),
+        text: vm.$t("vacation.VacationEndDate"),
+        sortable: false,
+        value: "to_day",
+      },
+      {
+        text: vm.$t("vacation.Totaldays"),
+        sortable: false,
+        value: "total_days",
+      },
+      {
+        text: vm.$t("vacation.RemainAnnualPool"),
         sortable: false,
         value: "remaining_annual_balance",
       },
       {
-        text: vm.$t("Remain casual Pool"),
+        text: vm.$t("vacation.RemaincasualPool"),
         sortable: false,
         value: "remaining_casual_balance",
       },
       {
-        text: vm.$t(" Annual Pool Used"),
+        text: vm.$t("vacation.AnnualPoolUsed"),
         sortable: false,
         value: "annual_balance_used",
       },
@@ -442,8 +470,16 @@ export default {
       this.loading = false;
     },
     async exportExel() {
+      const { page, itemsPerPage } = this.options;
+      const pageNumber = page - 1;
       this.loading = true;
-      const List = await Services.getAllItems();
+      const List = await Services.getAllItems(
+        itemsPerPage,
+        page,
+        pageNumber,
+        this.keyword,
+        this.list
+      );
       import("@/vendor/Export2Excel").then((excel) => {
         const tHeader = [
           "Code",

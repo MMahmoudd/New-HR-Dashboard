@@ -123,7 +123,7 @@
 
     <v-card>
       <v-card-title>
-        {{ $t("All in one report") }}
+        {{ $t("allrebort.Allinonereport") }}
         <v-spacer />
         <v-spacer />
         <v-btn
@@ -298,30 +298,38 @@ export default {
       min: (v) => v.length >= 8 || "Min 8 characters",
     },
     headers: [
-      { text: vm.$t("code"), sortable: false, value: "code" },
-      { text: vm.$t("user"), sortable: false, value: "user" },
-      { text: vm.$t("company"), sortable: false, value: "company" },
-      { text: vm.$t("category"), sortable: false, value: "category" },
-      { text: vm.$t("area"), sortable: false, value: "area" },
-      { text: vm.$t("from_day"), sortable: false, value: "from_day" },
+      { text: vm.$t("allrebort.code"), sortable: false, value: "code" },
+      { text: vm.$t("allrebort.User"), sortable: false, value: "user" },
+      { text: vm.$t("allrebort.Company"), sortable: false, value: "company" },
+      { text: vm.$t("allrebort.Category"), sortable: false, value: "category" },
+      { text: vm.$t("allrebort.Areas"), sortable: false, value: "area" },
+      { text: vm.$t("allrebort.fromday"), sortable: false, value: "from_day" },
       {
-        text: vm.$t("to_day"),
+        text: vm.$t("allrebort.today"),
         sortable: false,
         value: "to_day",
       },
-      { text: vm.$t("type"), sortable: false, value: "type" },
-      { text: vm.$t("sub_type"), sortable: false, value: "sub_type" },
-      { text: vm.$t("job_title"), sortable: false, value: "job_title" },
-      { text: vm.$t("latency"), sortable: false, value: "latency" },
-      { text: vm.$t("from_time"), sortable: false, value: "from_time" },
-      { text: vm.$t("to_time"), sortable: false, value: "to_time" },
+      { text: vm.$t("allrebort.type"), sortable: false, value: "type" },
+      { text: vm.$t("allrebort.subtype"), sortable: false, value: "sub_type" },
       {
-        text: vm.$t("total_working_time"),
+        text: vm.$t("allrebort.JobTitles"),
+        sortable: false,
+        value: "job_title",
+      },
+      { text: vm.$t("allrebort.latency"), sortable: false, value: "latency" },
+      {
+        text: vm.$t("allrebort.fromtime"),
+        sortable: false,
+        value: "from_time",
+      },
+      { text: vm.$t("allrebort.totime"), sortable: false, value: "to_time" },
+      {
+        text: vm.$t("allrebort.totalworkingtime"),
         sortable: false,
         value: "total_working_time",
       },
     ],
-    filename: "Main",
+    filename: "All in one report",
     bookType: "xlsx",
     autoWidth: true,
   }),
@@ -392,27 +400,36 @@ export default {
       const List = await Services.getAllItems();
       import("@/vendor/Export2Excel").then((excel) => {
         const tHeader = [
-          "Code",
-          "EmployeeName",
-          "Job Title",
-          "Category",
-          "Company",
-          "Start Date",
-          "managers",
-          "Areas",
-          "Department",
+          "code",
+          "user",
+          "company",
+          "category",
+          "area",
+          "from_day",
+          "to_day",
+          "type",
+          "sub_type",
+          "job_title",
+          "latency",
+          "from_time",
+          "to_time",
+          "total working time",
         ];
         const list = List.data.map((item) => {
           return {
-            Code: item.Code,
-            FullName: item.FullName,
-            JobTitle: item.JobTitle,
-            Category: item.Category,
-            Company: item.Company,
-            StartDate: item.StartDate,
-            managers: item.managers,
-            Areas: item.Areas,
-            Department: item.Department,
+            code: item.code,
+            user: item.user,
+            company: item.company,
+            area: item.area,
+            from_day: item.from_day,
+            to_day: item.to_day,
+            type: item.type,
+            sub_type: item.sub_type,
+            job_title: item.job_title,
+            latency: item.latency,
+            from_time: item.from_time,
+            to_time: item.to_time,
+            total_working_time: item.total_working_time,
           };
         });
         const data = this.formatJson(list);

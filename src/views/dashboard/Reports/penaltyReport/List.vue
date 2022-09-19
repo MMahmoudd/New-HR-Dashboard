@@ -15,7 +15,7 @@
       </v-card-title>
 
       <template>
-        <v-row cols="6" md="3">
+        <v-row cols="6" md="3" style="margin: auto">
           <div class="pl-4">
             <v-menu
               ref="menu"
@@ -82,7 +82,7 @@
           </div>
         </v-row>
       </template>
-      <v-row class="pl-4">
+      <v-row class="pl-4" style="margin: auto">
         <v-col cols="6" md="4">
           <v-select
             v-model="list.company_id"
@@ -99,7 +99,7 @@
 
     <v-card>
       <v-card-title>
-        {{ $t("penalty Report") }}
+        {{ $t("penalty.penaltyReport") }}
         <v-spacer />
         <v-spacer />
         <v-btn
@@ -258,9 +258,7 @@ export default {
     options: {},
     List: [],
     cities: "",
-    //  company_id:"",
-    //  jobtitle_id:"",
-    //  department_id:"",
+
     CompaniesList: "",
     itemDetails: {},
     deleteDailog: false,
@@ -285,32 +283,32 @@ export default {
     },
     headers: [
       {
-        text: vm.$t("code"),
+        text: vm.$t("penalty.code"),
         sortable: false,
         value: "code",
       },
       {
-        text: vm.$t("full_name"),
+        text: vm.$t("penalty.fullname"),
         sortable: false,
         value: "full_name",
       },
       {
-        text: vm.$t("Disciplinary Type Description"),
+        text: vm.$t("penalty.DisciplinaryTypeDescription"),
         sortable: false,
         value: "Disciplinary_Type_Description",
       },
       {
-        text: vm.$t("Disciplinary Type Code"),
+        text: vm.$t("penalty.DisciplinaryTypeCode"),
         sortable: false,
         value: "Disciplinary_Type_Code",
       },
       {
-        text: vm.$t("Discipline_Notes"),
+        text: vm.$t("penalty.DisciplineNotes"),
         sortable: false,
         value: "Discipline_Notes",
       },
       {
-        text: vm.$t("Discipline_Repetition"),
+        text: vm.$t("penalty.DisciplineRepetition"),
         sortable: false,
         value: "Discipline_Repetition",
       },
@@ -344,7 +342,6 @@ export default {
       // console.log('this.keyword', this.keyword)
       this.dataLoading = true;
       const { page, itemsPerPage } = this.options;
-
       const pageNumber = page - 1;
       const List = await Services.getAllItems(
         itemsPerPage,
@@ -387,7 +384,15 @@ export default {
     },
     async exportExel() {
       this.loading = true;
-      const List = await Services.getAllItems();
+      const { page, itemsPerPage } = this.options;
+      const pageNumber = page - 1;
+      const List = await Services.getAllItems(
+        itemsPerPage,
+        page,
+        pageNumber,
+        this.keyword,
+        this.list
+      );
       import("@/vendor/Export2Excel").then((excel) => {
         const tHeader = [
           "code",

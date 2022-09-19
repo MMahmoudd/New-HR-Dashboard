@@ -2,6 +2,126 @@
   <v-container fluid>
     <v-card>
       <v-card-title>
+        <v-spacer />
+        <v-spacer />
+        <v-btn
+          class="mx-1 my-auto"
+          color="success"
+          :loading="loading"
+          @click="fetchAllItems()"
+        >
+          {{ $t("actions.search") }}
+        </v-btn>
+      </v-card-title>
+
+      <template>
+        <v-row cols="6" md="3" style="margin: auto">
+          <div class="pl-4">
+            <v-menu
+              ref="menu"
+              v-model="menu"
+              :close-on-content-click="false"
+              transition="scale-transition"
+              offset-y
+              min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="keyword.dateFrom"
+                  label="from"
+                  prepend-icon="mdi-calendar"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="keyword.dateFrom"
+                :active-picker.sync="activePicker"
+                :max="
+                  new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+                    .toISOString()
+                    .substr(0, 10)
+                "
+                min="1950-01-01"
+                @change="save"
+              ></v-date-picker>
+            </v-menu>
+          </div>
+          <div>
+            <v-menu
+              ref="menu"
+              v-model="menuu"
+              :close-on-content-click="false"
+              transition="scale-transition"
+              offset-y
+              min-width="auto"
+            >
+              <template v-slot:activator="{ on, attrs }">
+                <v-text-field
+                  v-model="keyword.dateTo"
+                  label="to"
+                  prepend-icon="mdi-calendar"
+                  readonly
+                  v-bind="attrs"
+                  v-on="on"
+                ></v-text-field>
+              </template>
+              <v-date-picker
+                v-model="keyword.dateTo"
+                :active-picker.sync="activePicker"
+                :max="
+                  new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+                    .toISOString()
+                    .substr(0, 10)
+                "
+                min="1950-01-01"
+                @change="save"
+              ></v-date-picker>
+            </v-menu>
+          </div>
+        </v-row>
+      </template>
+      <v-row class="pl-4" style="margin: auto">
+        <v-col cols="6" md="3">
+          <v-select
+            v-model="list.company_id"
+            :items="CompaniesList"
+            item-text="name"
+            item-value="id"
+            :label="$t('CompanyStructure.Companies')"
+            outlined
+            required
+            @input="getDepartments(list.company_id)"
+          />
+        </v-col>
+        <v-col cols="6" md="3">
+          <v-select
+            v-model="list.department_id"
+            :items="DepartmentsList"
+            item-text="name"
+            item-value="id"
+            :label="$t('CompanyStructure.Departments')"
+            outlined
+            required
+          />
+        </v-col>
+        <v-col cols="6" md="3">
+          <v-select
+            v-model="list.jobtitle_id"
+            :items="jobTitlsList"
+            item-text="name"
+            item-value="id"
+            :label="$t('CompanyStructure.JobTitles')"
+            outlined
+            required
+          />
+        </v-col>
+      </v-row>
+    </v-card>
+
+    <v-card>
+      <v-card-title>
         {{ $t("reportingTo.reportingTo") }}
         <v-spacer />
         <v-spacer />
@@ -350,8 +470,8 @@ export default {
       const data = await jobTitleServices.getAllItems();
       this.jobTitlsList = data.data;
     },
-    async getDepartments() {
-      const data = await departmentServices.getAllItems();
+    async getDepartments(id) {
+      const data = await departmentServices.getDepartmentByCompanyId(id);
       this.DepartmentsList = data.data;
     },
 

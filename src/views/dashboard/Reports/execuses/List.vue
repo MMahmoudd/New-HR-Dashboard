@@ -113,7 +113,6 @@
             item-text="name"
             item-value="id"
             :label="$t('Execuses.JobTitle')"
-            multiple
             outlined
             required
           />
@@ -422,7 +421,6 @@ export default {
       // console.log('this.keyword', this.keyword)
       this.dataLoading = true;
       const { page, itemsPerPage } = this.options;
-
       const pageNumber = page - 1;
       const List = await Services.getAllItems(
         itemsPerPage,
@@ -464,6 +462,8 @@ export default {
       this.loading = false;
     },
     async exportExel() {
+      const { page, itemsPerPage } = this.options;
+      const pageNumber = page - 1;
       this.loading = true;
       const List = await Services.getAllItems(
         itemsPerPage,

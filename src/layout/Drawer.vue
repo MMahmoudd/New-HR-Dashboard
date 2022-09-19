@@ -134,7 +134,7 @@ export default {
             to: "/MainReport",
           },
           {
-            title: vm.$t("Vacation"),
+            title: vm.$t("sidebar.Vacation"),
             to: "/Vacation",
           },
           {
@@ -159,19 +159,20 @@ export default {
             to: "/ReportingTo",
           },
           {
-            title: vm.$t("penaltyReport"),
+            title: vm.$t("sidebar.penalty"),
             to: "/penaltyReport",
           },
           {
-            title: vm.$t("All in one report"),
+            title: vm.$t("sidebar.Allinonereport"),
             to: "/allReport",
           },
           {
-            title: vm.$t("Summary Report"),
+            title: vm.$t("sidebar.SummaryReport"),
             to: "/Summary",
           },
+
           {
-            title: vm.$t("Absence Report "),
+            title: vm.$t("sidebar.AbsenceReport"),
             to: "/absenceRebort",
           },
           {

@@ -1,19 +1,14 @@
 <template>
   <v-card>
     <v-toolbar>
-      <!-- background-color="red lighten-2" dark -->
-      <!-- <v-text-field
-        append-icon="mdi-microphone"
-        class="mx-4"
-        flat
-        hide-details
-        label="Search"
-        prepend-inner-icon="mdi-magnify"
-        solo-inverted
-      ></v-text-field> -->
-
       <template v-slot:extension>
-        <v-tabs background-color="red lighten-3" dark v-model="tabs" centered>
+        <v-tabs
+          text-color="black lighten-3"
+          background-color="red lighten-3"
+          dark
+          v-model="tabs"
+          centered
+        >
           <v-tab v-for="(n, i) in headOfPages" :key="i">{{ n }} </v-tab>
         </v-tabs>
       </template>

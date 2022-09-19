@@ -281,10 +281,18 @@ export default {
       this.loading = false;
     },
     async exportExel() {
+      const { page, itemsPerPage } = this.options;
+      const pageNumber = page - 1;
       this.loading = true;
-      const List = await Services.getAllItems();
+      const List = await Services.getAllItems(
+        itemsPerPage,
+        page,
+        pageNumber,
+        this.keyword,
+        this.list
+      );
       import("@/vendor/Export2Excel").then((excel) => {
-        const tHeader = ["id", "Top Management", "Title"];
+        const tHeader = ["id", "Top Management", "JobTitle"];
         const list = List.data.map((item) => {
           return {
             id: item.id,

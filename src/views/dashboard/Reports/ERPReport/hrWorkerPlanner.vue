@@ -10,12 +10,12 @@
           :loading="loading"
           @click="fetchAllItems()"
         >
-          {{ $t("Search") }}
+          {{ $t("actions.search") }}
         </v-btn>
       </v-card-title>
 
       <template>
-        <v-row cols="6" md="3">
+        <v-row cols="6" md="3" style="margin: auto">
           <div class="pl-4">
             <v-menu
               ref="menu"
@@ -28,7 +28,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="keyword.dateFrom"
-                  label="from"
+                  :label="$t('actions.from')"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -60,7 +60,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="keyword.dateTo"
-                  label="to"
+                  :label="$t('actions.to')"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -82,14 +82,14 @@
           </div>
         </v-row>
       </template>
-      <v-row class="pl-4">
+      <v-row class="pl-4" style="margin: auto">
         <v-col cols="6" md="4">
           <v-select
             v-model="list.company_id"
             :items="CompaniesList"
             item-text="name"
             item-value="id"
-            :label="$t('company')"
+            :label="$t('actions.Company')"
             outlined
             required
           />
@@ -111,18 +111,6 @@
         >
           {{ $t("actions.export") }}
         </v-btn>
-        <!-- <router-link
-          :to="{ path: '/reportingToForm' }"
-          color="primary"
-        > -->
-        <!-- <v-btn
-            outlined
-            class="mx-2"
-            color="green"
-          >
-            {{ $t('actions.Add') }}
-          </v-btn> -->
-        <!-- </router-link> -->
       </v-card-title>
       <v-data-table
         v-model="selected"
@@ -316,15 +304,19 @@ export default {
       min: (v) => v.length >= 8 || "Min 8 characters",
     },
     headers: [
-      { text: vm.$t("Date"), sortable: false, value: "Date" },
+      { text: vm.$t("WorkerPlanner.Date"), sortable: false, value: "Date" },
       {
-        text: vm.$t("Profile Calendar Type"),
+        text: vm.$t("WorkerPlanner.ProfileCalendarType"),
         sortable: false,
         value: "ProfileCalendarType",
       },
-      { text: vm.$t("Profile Id"), sortable: false, value: "ProfileId" },
       {
-        text: vm.$t("Relation Number"),
+        text: vm.$t("WorkerPlanner.ProfileId"),
+        sortable: false,
+        value: "ProfileId",
+      },
+      {
+        text: vm.$t("WorkerPlanner.RelationNumber"),
         sortable: false,
         value: "RelationNumber",
       },
@@ -333,7 +325,7 @@ export default {
 
       // { text: vm.$t('actions.actions'), value: 'actions', sortable: false },
     ],
-    filename: "absenceSheetTransaction",
+    filename: "Hr Worker Planner ",
     bookType: "xlsx",
     autoWidth: true,
   }),
@@ -405,24 +397,28 @@ export default {
     },
     async exportExel() {
       this.loading = true;
-      const List = await Services.getAllItems();
+      const { page, itemsPerPage } = this.options;
+      const pageNumber = page - 1;
+      const List = await Services.getAllItems(
+        itemsPerPage,
+        page,
+        pageNumber,
+        this.keyword,
+        this.list
+      );
       import("@/vendor/Export2Excel").then((excel) => {
         const tHeader = [
-          "Excue Start Time",
-          "Excue End Time",
-          "Excue Day",
-          "sender",
-          "DirectManager",
-          "status",
+          "Date",
+          "Profile Calendar Type",
+          "ProfileId",
+          "Relation Number",
         ];
         const list = List.data.map((item) => {
           return {
-            from_time: item.from_time,
-            to_time: item.to_time,
-            permission_day: item.permission_day,
-            sender: item.sender,
-            dircet_manager: item.dircet_manager,
-            status: item.status,
+            Date: item.Date,
+            ProfileCalendarType: item.ProfileCalendarType,
+            ProfileId: item.ProfileId,
+            RelationNumber: item.RelationNumber,
           };
         });
         const data = this.formatJson(list);

@@ -10,12 +10,12 @@
           :loading="loading"
           @click="fetchAllItems()"
         >
-          {{ $t("Search") }}
+          {{ $t("actions.search") }}
         </v-btn>
       </v-card-title>
 
       <template>
-        <v-row cols="6" md="3">
+        <v-row cols="6" md="3" style="margin: auto">
           <div class="pl-4">
             <v-menu
               ref="menu"
@@ -28,7 +28,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="keyword.dateFrom"
-                  label="from"
+                  :label="$t('actions.from')"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -60,7 +60,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <v-text-field
                   v-model="keyword.dateTo"
-                  label="to"
+                  :label="$t('actions.to')"
                   prepend-icon="mdi-calendar"
                   readonly
                   v-bind="attrs"
@@ -82,14 +82,14 @@
           </div>
         </v-row>
       </template>
-      <v-row class="pl-4">
+      <v-row class="pl-4" style="margin: auto">
         <v-col cols="6" md="4">
           <v-select
             v-model="list.company_id"
             :items="CompaniesList"
             item-text="name"
             item-value="id"
-            :label="$t('company')"
+            :label="$t('actions.Company')"
             outlined
             required
           />
@@ -317,18 +317,22 @@ export default {
     },
     headers: [
       {
-        text: vm.$t("Personal Number"),
+        text: vm.$t("absenceSheet.PersonalNumber"),
         sortable: false,
         value: "PersonalNumber",
       },
       {
-        text: vm.$t("From Date Time"),
+        text: vm.$t("absenceSheet.FromDateTime"),
         sortable: false,
         value: "FromDateTime",
       },
-      { text: vm.$t("To Date Time"), sortable: false, value: "ToDateTime" },
       {
-        text: vm.$t("Absence Code"),
+        text: vm.$t("absenceSheet.ToDateTime"),
+        sortable: false,
+        value: "ToDateTime",
+      },
+      {
+        text: vm.$t("absenceSheet.AbsenceCode"),
         sortable: false,
         value: "Absence Code",
       },
@@ -409,24 +413,28 @@ export default {
     },
     async exportExel() {
       this.loading = true;
-      const List = await Services.getAllItems();
+      const { page, itemsPerPage } = this.options;
+      const pageNumber = page - 1;
+      const List = await Services.getAllItems(
+        itemsPerPage,
+        page,
+        pageNumber,
+        this.keyword,
+        this.list
+      );
       import("@/vendor/Export2Excel").then((excel) => {
         const tHeader = [
-          "Excue Start Time",
-          "Excue End Time",
-          "Excue Day",
-          "sender",
-          "DirectManager",
-          "status",
+          "Personal Number",
+          "From Date Time",
+          "To Date Time",
+          "Absence Code",
         ];
         const list = List.data.map((item) => {
           return {
-            from_time: item.from_time,
-            to_time: item.to_time,
-            permission_day: item.permission_day,
-            sender: item.sender,
-            dircet_manager: item.dircet_manager,
-            status: item.status,
+            PersonalNumber: item.PersonalNumber,
+            FromDateTime: item.FromDateTime,
+            ToDateTime: item.ToDateTime,
+            AbsenceCode: item.AbsenceCode,
           };
         });
         const data = this.formatJson(list);
